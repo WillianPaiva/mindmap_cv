@@ -1,0 +1,173 @@
+
+
+\documentclass{article}
+\usepackage{lscape}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{background}
+\usepackage{blindtext}
+\usepackage{tikz}
+\usetikzlibrary{mindmap,trees,positioning,backgrounds}
+\usepackage{verbatim}
+\usepackage[margin=0.5in]{geometry}
+
+
+\makeatletter
+\tikzset{
+    non-concept/.style={
+        rectangle,
+        text width=15em,
+        text=black,
+        align=left,
+    },
+    cncc east/.style={
+        edge from parent path={
+            (\tikzparentnode.east) to[out=0, in=180] (\tikzchildnode.south west)
+            -- (\tikzchildnode.south east)
+        }
+    },
+    cncc west/.style={
+        edge from parent path={
+            (\tikzparentnode.west) to[out=-180, in=0] (\tikzchildnode.south east)
+            -- (\tikzchildnode.south west)
+        }
+    }
+ }
+\makeatother
+\backgroundsetup{
+scale=1,
+angle=0,
+opacity=1,
+contents={\begin{tikzpicture}[remember picture,overlay]
+ \path [left color = blue!30!black,middle color = blue!30, right color = white] (current page.south west)rectangle (current page.north east);   % Adjust the position of the logo.
+\end{tikzpicture}}
+}
+
+\begin{document}
+
+\begin{landscape}
+\pagestyle{empty}
+\begin{tikzpicture}
+  \path[mindmap,concept color=black,text=white]
+    node[concept](main) {\large Willian Ver Valen Paiva \includegraphics[width=.80\textwidth]{2542886.jpg}}
+    [clockwise from=0]
+    child[concept color=green!25!black ,text=white] {
+      node[concept](comp) {Competences}
+      [clockwise from=90]
+      child [concept color=green!40!black,text=white]{ node[concept] (gest) {gestionaire de systeme} [clockwise from=120]
+  	child [concept color=green!60!black,text=black]{node[concept] [yshift=-0.2cm, xshift=-0.2cm]{\includegraphics[width=0.7\textwidth]{osx.png}}} 
+  	child [concept color=green!60!black,text=black]{node[concept] {\includegraphics[width=0.7\textwidth]{linux.png}}}     
+  	child [concept color=green!60!black,text=black]{node[concept][yshift=0.2cm ,xshift=0.3cm] {\includegraphics[width=0.7\textwidth]{windows.png}}}         
+      }      	
+     child [concept color=green!40!black,text=white]{ node[concept](langs) [xshift=2cm]{langages} [clockwise from=180] 
+	child [concept color=green!60!black,text=black]{node[concept] {C/C++}}
+	child [concept color=green!60!black,text=black]{node[concept] {LISP}}
+	child [concept color=green!60!black,text=black]{node[concept] {JAVA} [clockwise from=90]
+	child {node[concept,text width=3em,text centered] {JAVAFX}}	
+	}
+	child [concept color=green!60!black,text=black]{node[concept] {PYTHON} [clockwise from=90]
+	child {node[concept,text width=3em,text centered] {DJANGO}}	
+	}
+	child [concept color=green!60!black,text=black]{node[concept] {SQL}}
+	child [concept color=green!60!black,text=black]{node[concept] {PHP}}
+	child [concept color=green!60!black,text=black]{node[concept,text width=4em,text centered] [yshift=-0.5cm] {HTML/CSS}}
+     }
+      child [concept color=green!40!black,text=white]{ node[concept]  [xshift=2cm] {outils} [clockwise from=0] 
+		child [concept color=green!60!black,text=black]{node[concept] {LATEX}}		
+		child [concept color=green!60!black,text=black]{node[concept] {VIM}}
+		child [concept color=green!60!black,text=black]{node[concept] {Jenkins}}
+		child [concept color=green!60!black,text=black]{node[concept] {GIT} [clockwise from=-90] 
+		child [concept color=green!60!black,text=black]{node[concept] (hub)  [xshift=0.5cm]{\includegraphics[width=0.9\textwidth]{github.png}}	
+		[
+            grow=right,
+            sibling distance=10ex,
+        ]
+            child[level distance=4cm] { node[non-concept] {{\normalsize github.com/WillianPaiva}}                            edge from parent[cncc east] }		
+		}
+		child {node[concept] (buk) [yshift=-1.5cm]{\includegraphics[width=0.9\textwidth]{bitbucket.png}}
+				[
+            grow=right,
+            sibling distance=10ex,
+        ]
+            child[level distance=4cm] { node[non-concept] {{\normalsize bitbucket.org/wvalen}}                            edge from parent[cncc east] }
+            }	
+		}      
+      }
+      child [concept color=green!40!black]{ node[concept] [xshift=2cm]{langues} [clockwise from=-60] 
+      child [concept color=green!60!black]{node[concept] {\includegraphics[width=0.5\textwidth]{Brasil.png}}}
+	  child [concept color=green!60!black]{node[concept] {\includegraphics[width=0.5\textwidth]{French.png}}}
+	  child [concept color=green!60!black]{node[concept] {\includegraphics[width=0.5\textwidth]{english.png}}}      
+      }
+    }    
+        child[concept color=blue!25!black, text=white] {
+      node[concept] {Experience}
+      [clockwise from=-60]
+      child [concept color=blue!40!black]{ node[concept] [xshift=-1cm] {\textbf{IT}} [clockwise from=-90] 
+      child [concept color=blue!60!black]{ node[concept]   {{\footnotesize \textbf{stage DUT}}} 
+      [
+            grow=right,
+            sibling distance=10ex,
+        ]
+           child[level distance=4cm] { node[non-concept] {{ {\footnotesize Pour plus de détails, voir :  https:\//github.com/1flow/1flow https:\//github.com/1flow/1flow/blob/master/AUTHORS.md}}}                            edge from parent[cncc east] }
+            child[level distance=4cm] { node[non-concept] {{{\footnotesize Start-up en service informatique ; co-conception et mise au point d’une application Web de syndication d’information pour grand’public et journalistes}}}                            edge from parent[cncc east] }
+       }  
+          child [concept color=blue!60!black]{ node[concept,text width=4em,text centered] [xshift=3.5cm, yshift=2.5cm]  (it) {{{\footnotesize \textbf{universit work}}}}}        
+      }  
+      child [concept color=blue!40!black]{ node[concept] {\textbf{Industrie}} [clockwise from=-120]
+		child [concept color=blue!60!black]{ node[concept,text width=5em,text centered] {{\footnotesize \textbf{Technicien en mécanique}}} 
+      [
+            grow=left,
+            sibling distance=11ex,
+        ]
+                   child[level distance=4cm] { node[non-concept] {{\normalsize 2001-2008}}                            edge from parent[cncc west] }
+            child[level distance=4cm] { node[non-concept] {{\footnotesize puis Responsable du service achats et maintenance des machines, Tenaris Confab International- Pindamonhangaba, SP, Brésil. Achats international pièces détachées, vérification budget 2 Millions \$, Gestion des stocks}}                            edge from parent[cncc west] }		
+		 }       
+        }       
+    }
+ child[concept color=red!40!black] { node[concept] {Formation et diplomes} [clockwise from=-120]
+ child [concept color=red!60!black]{node[concept] {2010-2012} [clockwise from=-180] 
+ 	child [concept color=red!80!black,text=black]{node[concept,text width=5em,text centered] {{\footnotesize Apprentissage du français}}}      
+ }     
+ child [concept color=red!60!black]{node[concept] {2013}[clockwise from=-180] 
+ child [concept color=red!80!black,text=black]{node[concept,text width=5em,text centered] {{\footnotesize DUT informatique Bx 1}}}      
+ }     
+ child [concept color=red!60!black]{node[concept] {2014}[clockwise from=-180] 
+ child [concept color=red!80!black,text=black]{node[concept,text width=5em,text centered] {{\footnotesize Licence informatique Bx 1}}}
+ } 
+ }
+child[concept color=yellow!40!black,text=black] { node[concept] [xshift=5cm, yshift=5cm]{Contact} [clockwise from=-180] 
+child [concept color=yellow!60!black]{node[concept] [xshift=-1cm, yshift=-3cm]{{\includegraphics[width=0.5\textwidth]{home.png}}}
+[
+            grow=left,
+            sibling distance=9ex,
+        ]
+        child[level distance=4cm] { node[non-concept] {{\large 10 avenue Marly 33400 Talence}}                            edge from parent[cncc west] }		
+}
+child [concept color=yellow!60!black]{node[concept] [xshift=-2.5cm, yshift=-3cm]{{\includegraphics[width=0.5\textwidth]{tel.png}}}
+[
+            grow=left,
+            sibling distance=9ex,
+        ]
+        child[level distance=4cm] { node[non-concept,color=white] {{\large 06 22 47 37 82}}                            edge from parent[cncc west] }		
+}
+child [concept color=yellow!60!black]{node[concept] [xshift=-5cm, yshift=-1cm]{{\includegraphics[width=0.5\textwidth]{email.png}}}
+[
+            grow=left,
+            sibling distance=9ex,
+        ]
+        child[level distance=4cm] { node[non-concept,color=white] {{\large vervalenpaiva@gmail.com}}                            edge from parent[cncc west] }	
+}
+} 
+ ;
+
+
+    
+    
+\begin{pgfonlayer}{background}
+ \draw [draw=black,fill=black,circle connection bar]
+      (it) edge[fill=black] (hub)
+      (it) edge[fill=black] (buk) ;    
+\end{pgfonlayer}
+\end{tikzpicture}
+\end{landscape}
+\end{document}
